@@ -10,7 +10,7 @@ namespace Serie_I
     {
         public static void PyramidConstruction(int n, bool isSmooth)
         {
-            //TODO
+            
         }
     }
 }
