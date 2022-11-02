@@ -34,6 +34,13 @@ namespace Serie_I
             ElementaryOperations.Pow(125, 452);
             #endregion
 
+            #region Exercice 3 - Construction d'une pyramide
+            Console.WriteLine("------------------------");
+            Console.WriteLine("Exo 3 : Construction d'une pyramide");
+            Console.WriteLine("------------------------");
+            Pyramid.PyramidConstruction(10,false);
+            #endregion
+
             #region Exercice 2 - Horloge parlante
             Console.WriteLine("------------------------");
             Console.WriteLine("Exo 2 : horloge parlante");
