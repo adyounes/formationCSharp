@@ -10,7 +10,7 @@ namespace Serie_II
     {
         public static int[][] BuildingMatrix(int[] leftVector, int[] rightVector)
         {
-            //TODO
+            //TODOyjy
             return new int[0][];
         }
 
