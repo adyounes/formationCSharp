@@ -39,6 +39,7 @@ namespace Serie_I
             Console.WriteLine("Exo 3 : Construction d'une pyramide");
             Console.WriteLine("------------------------");
             Pyramid.PyramidConstruction(10,false);
+            Pyramid.PyramidConstruction(10,true);
             #endregion
 
             #region Exercice 2 - Horloge parlante
