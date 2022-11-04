@@ -1,0 +1,5 @@
+Marc,Histoire,12.0
+Paul,Histoire,15.5
+Yvonne,Math,6.0
+David,Histoire,2.5
+Paul,Math,15.5
