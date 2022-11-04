@@ -17,7 +17,11 @@ namespace Serie_III
             Console.WriteLine("------------------------");
             ClassCouncil.SchoolMeans("EntreeTest.csv","SortieTest.csv");
             #endregion
-
+            #region Exercice 2 - Performances des tris
+            Console.WriteLine("------------------------");
+            Console.WriteLine("Exo 1 : Performances des tris");
+            Console.WriteLine("------------------------");
+            #endregion
             // Keep the console window open
             Console.WriteLine("----------------------");
             Console.WriteLine("Press any key to exit.");

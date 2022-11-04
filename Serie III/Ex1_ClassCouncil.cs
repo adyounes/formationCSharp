@@ -44,7 +44,7 @@ namespace Serie_III
                 sorties.Add($"{matiere.Key};{moyenne:F1}");
                 //sorties.Add($"{matiere.Key};{Math.Round(moyenne, 1)}");
             }
-
+            
             return (sorties.ToArray());
         }
         public static void SchoolMeans(string input, string output)
