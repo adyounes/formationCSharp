@@ -17,7 +17,7 @@ namespace Serie_III
             {
 
                 string[] line = ligne.Split(';');
-                string matiere = line[0];
+                string matiere = line[1];
                 string note = line[2];
                 note = note.Replace('.', ',');
 
@@ -42,6 +42,7 @@ namespace Serie_III
 
                 double moyenne = total / matiere.Value.Count;
                 sorties.Add($"{matiere.Key};{moyenne:F1}");
+                //sorties.Add($"{matiere.Key};{Math.Round(moyenne, 1)}");
             }
 
             return (sorties.ToArray());
