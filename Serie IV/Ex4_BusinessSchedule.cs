@@ -24,7 +24,7 @@ namespace Serie_IV
             //TODO
             if(_schedule.Count == 0)
             {
-                return true;
+                return true; 
             }
             return false;
         }
