@@ -19,8 +19,10 @@ namespace Serie_III
             #endregion
             #region Exercice 2 - Performances des tris
             Console.WriteLine("------------------------");
-            Console.WriteLine("Exo 1 : Performances des tris");
+            Console.WriteLine("Exo 2 : Performances des tris");
             Console.WriteLine("------------------------");
+            List<int> test = new List<int>() { 2000, 5000, 10000 };
+            SortingPerformance.DisplayPerformances(test, 50);
             #endregion
             // Keep the console window open
             Console.WriteLine("----------------------");
