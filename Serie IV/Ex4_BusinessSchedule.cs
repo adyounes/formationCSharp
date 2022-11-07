@@ -32,11 +32,15 @@ namespace Serie_IV
         public void SetRangeOfDates(DateTime begin, DateTime end)
         {
             //TODO
-            if (IsEmpty &&)
+            if (IsEmpty() && begin<end)
             {
                     _begin = begin;
                     _end = end;
-            } 
+            }
+            else
+            {
+                throw new Exception();
+            }
         }
 
         private KeyValuePair<DateTime, DateTime> ClosestElements(DateTime beginMeeting)
@@ -44,7 +48,7 @@ namespace Serie_IV
             //TODO
             return new KeyValuePair<DateTime, DateTime>();
         }
-
+        
         public bool AddBusinessMeeting(DateTime date, TimeSpan duration)
         {
             //TODO
@@ -66,6 +70,16 @@ namespace Serie_IV
         public void DisplayMeetings()
         {
             //TODO
+            Console.WriteLine($"Emploi du temps :{_begin} - {_end}");
+            if(_schedule.Count ==0)
+            {
+                Console.WriteLine("Pas de réunion programmées");
+            }
+
+            foreach(KeyValuePair<DateTime, TimeSpan> reunion in _schedule)
+            {
+                Console.WriteLine(_schedule[reunion.Key]);
+            }
         }
     }
 }
