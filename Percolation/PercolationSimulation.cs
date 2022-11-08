@@ -26,12 +26,55 @@ namespace Percolation
     {
         public PclData MeanPercolationValue(int size, int t)
         {
-            return new PclData();
+            PclData data = new PclData();
+            double[] values = new double[t];
+            double total = 0;
+
+            // on lance la simulation t fois et on récupère à chaque fois la proportion cases ouvertes / nombre de cases.
+            for (int i = 0; i < t; i++)
+            {
+                values[i] = PercolationValue(size);
+                total += values[i];
+            }
+
+            // calcul de la moyenne des proportions.
+            data.Mean = total / t;
+
+            double somme = 0;
+
+            // calcul de l'écart-type des proportions.
+            foreach (double value in values)
+            {
+                somme += ((data.Mean - value) * (data.Mean - value));
+            }
+
+            data.StandardDeviation = Math.Sqrt(somme / t);
+
+            return data;
         }
 
         public double PercolationValue(int size)
         {
-            return 0;
+            Percolation perc = new Percolation(size);
+            Random rand = new Random();
+            int cases_ouvertes = 0;
+
+            // Tant que la percolation ne s'est pas produite
+            do
+            {
+                int i = rand.Next(size);
+                int j = rand.Next(size);
+
+                // on ouvre une case aléatoire si elle n'est pas déjà ouverte.
+                if (!perc.IsOpen(i, j))
+                {
+                    perc.Open(i, j);
+                    cases_ouvertes += 1;
+                }
+            } while (!perc.Percolate());
+
+            // on retourne la valeur cases ouvertes / nombre de cases. 
+            return (double)cases_ouvertes / (size * size);
         }
     }
 }
