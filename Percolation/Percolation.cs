@@ -64,6 +64,13 @@ namespace Percolation
             return voisins;
         }
 
+        //Question 3 :
+        //a)Quelle est la performance de cette méthode dans le pire cas ?
+        //   Lorsque l'on rentre une size de 1, on risque de se retrouver pris dans une boucle infinie
+
+        //b)Expliquer intuitivement, pour qu'elles raisons ce cas a-t-il peu de chances de ce produire ?
+        //   Il est très peu probable de tester sur une taille de ce genre, généralement les tests ce feront
+        //   à grande echelle pour plus de précision au niveau de l'écart-type et la moyenne
         public void Open(int i, int j)
         {
             List<KeyValuePair<int, int>> voisins = CloseNeighbors(i, j);

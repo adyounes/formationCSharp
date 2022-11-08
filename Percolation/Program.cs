@@ -14,7 +14,7 @@ namespace Percolation
             {
                 PercolationSimulation perco = new PercolationSimulation();
 
-                perco.MeanPercolationValue(10,5);
+                perco.MeanPercolationValue(1,5);
 
             }
             catch(ArgumentOutOfRangeException e)
