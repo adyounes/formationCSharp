@@ -10,7 +10,7 @@ namespace Serie_IV
     {
         private DateTime _begin;
         private DateTime _end;
-        private Dictionary<DateTime,TimeSpan> _schedule;
+        private Dictionary<DateTime, TimeSpan> _schedule;
 
         public BusinessSchedule()
         {
@@ -21,21 +21,19 @@ namespace Serie_IV
 
         public bool IsEmpty()
         {
-            //TODO
-            if(_schedule.Count == 0)
+            if (_schedule.Count == 0)
             {
-                return true; 
+                return true;
             }
             return false;
         }
 
         public void SetRangeOfDates(DateTime begin, DateTime end)
         {
-            //TODO
-            if (IsEmpty() && begin<end)
+            if (IsEmpty() && begin < end)
             {
-                    _begin = begin;
-                    _end = end;
+                _begin = begin;
+                _end = end;
             }
             else
             {
@@ -45,40 +43,89 @@ namespace Serie_IV
 
         private KeyValuePair<DateTime, DateTime> ClosestElements(DateTime beginMeeting)
         {
-            //TODO
-            return new KeyValuePair<DateTime, DateTime>();
+            DateTime debut = new DateTime();
+            DateTime fin = new DateTime();
+
+            foreach (KeyValuePair<DateTime, TimeSpan> date in _schedule)
+            {
+                if (date.Key <= beginMeeting)
+                {
+                    debut = date.Key;
+                }
+                else if (date.Key > beginMeeting)
+                {
+                    fin = date.Key;
+                    break;
+                }
+
+            }
+            KeyValuePair<DateTime, DateTime> keyValuePair = new KeyValuePair<DateTime, DateTime>(debut, fin);
+            return keyValuePair;
         }
-        
+
         public bool AddBusinessMeeting(DateTime date, TimeSpan duration)
         {
-            //TODO
+            if (date >= _begin && date+duration <= _end)
+            {
+                KeyValuePair<DateTime, DateTime> closestsElements = ClosestElements(date);
+                DateTime lowerDt = closestsElements.Key;
+                DateTime upperDt = closestsElements.Value;
+
+                if ((lowerDt == DateTime.MinValue || date >= lowerDt + _schedule[lowerDt])
+                    &&
+                  (upperDt == DateTime.MaxValue || date + duration <= upperDt))
+                  {
+                    _schedule.Add(date, duration);
+                    return true;
+                  }
+            }
             return false;
+           
         }
 
         public bool DeleteBusinessMeeting(DateTime date, TimeSpan duration)
         {
-            //TODO
+            if (!IsEmpty() && _schedule.ContainsKey(date) &&_schedule[date] ==duration)
+            {
+                return _schedule.Remove(date);
+            }
             return false;
         }
 
         public int ClearMeetingPeriod(DateTime begin, DateTime end)
         {
             //TODO
-            return -1;
+            int meetingsDeleted = 0;
+            if(begin < _begin || end > _end)
+            {
+                throw new ArgumentOutOfRangeException("");
+            }
+
+            foreach(var meeting in _schedule.Keys)
+            {
+                if(meeting > begin && meeting + _schedule[meeting] <end)
+                {
+                    _schedule.Remove(meeting);
+                    meetingsDeleted++;
+                }
+            }
+            return meetingsDeleted;
         }
 
         public void DisplayMeetings()
         {
             //TODO
             Console.WriteLine($"Emploi du temps :{_begin} - {_end}");
-            if(_schedule.Count ==0)
+            if (_schedule.Count == 0)
             {
                 Console.WriteLine("Pas de réunion programmées");
             }
 
-            foreach(KeyValuePair<DateTime, TimeSpan> reunion in _schedule)
+            int i = 1;
+            foreach (KeyValuePair<DateTime, TimeSpan> reunion in _schedule)
             {
-                Console.WriteLine(_schedule[reunion.Key]);
+                Console.WriteLine($"Reunion {i}           : {reunion.Key} - {reunion.Key + reunion.Value}");
+                i++;
             }
         }
     }
