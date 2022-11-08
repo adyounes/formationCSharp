@@ -50,6 +50,10 @@ namespace Percolation
 
             data.StandardDeviation = Math.Sqrt(somme / t);
 
+            // calcul de la fraction (ecart-type sur la moyenne)
+            data.Fraction = data.Mean / data.StandardDeviation;
+
+
             return data;
         }
 

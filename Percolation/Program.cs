@@ -14,10 +14,11 @@ namespace Percolation
             {
                 PercolationSimulation perco = new PercolationSimulation();
 
-                perco.MeanPercolationValue(1,5);
+                PclData data = perco.MeanPercolationValue(100, 20);
+                Console.WriteLine($"{data.Mean} ; {data.StandardDeviation} ; {data.Fraction}");
 
             }
-            catch(ArgumentOutOfRangeException e)
+            catch (ArgumentOutOfRangeException e)
             {
                 Console.WriteLine(e.Message);
             }

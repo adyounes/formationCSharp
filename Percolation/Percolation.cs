@@ -27,16 +27,20 @@ namespace Percolation
 
         public bool IsOpen(int i, int j)
         {
+           //Console.WriteLine($"open : {_open[i, j]}");
             return _open[i,j];
+
         }
 
         private bool IsFull(int i, int j)
         {
+            //Console.WriteLine($"full : {_full[i, j]}");
             return _full[i,j];
         }
 
         public bool Percolate()
         {
+            //Console.WriteLine($"percolate : {_percolate}");
             return _percolate;
         }
 
@@ -92,7 +96,7 @@ namespace Percolation
                     _full[i, j] = true;
 
                     //Si on remplit une case de la dernière ligne, il y a percolation
-                    if(voisin.Key == _size - 1)
+                    if (voisin.Key == _size - 1)
                     {
                         _percolate = true;
                     }
