@@ -59,6 +59,7 @@ namespace Projet_Formation_I
             return true;
         }
 
+        //Récupère les 10 Dernières transactions d'un compte
         private double TenLastTransactions()
         {
             double total = 0;

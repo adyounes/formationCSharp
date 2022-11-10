@@ -8,18 +8,20 @@ namespace Projet_Formation_I
     {
         static void Main()
         {
-            // lecture des fichiers d'entrées pour obtenir la liste des comptes et des transactions
+            string path = Directory.GetCurrentDirectory();
+            string acctPath = path + @"\Comptes_1.csv";
+            string trxnPath = path + @"\Transactions_1.csv";
+            string sttsPath = path + @"\Statut_1.csv";
 
-            List<Comptes> comptes = LectureFichierComptes("Comptes.csv");
-            List<Transactions> transactions = LectureFichierTransactions("Transactions.csv");
+            // lecture des fichiers d'entrées pour obtenir la liste des comptes et des transactions
+            List<Comptes> comptes = LectureFichierComptes(acctPath);
+            List<Transactions> transactions = LectureFichierTransactions(trxnPath);
 
             // traitement des transactions pour obtenir leur statut
-
             TraitementTransactions(transactions, comptes);
 
             // ecriture des statuts dans le fichier de sortie
-
-            EcritureFichierSortie(transactions, "Sorties.csv");
+            EcritureFichierSortie(transactions, sttsPath);
 
 
             //Vérifie si le compte est existant ou non
@@ -49,6 +51,7 @@ namespace Projet_Formation_I
                 }
                 return -1;
             }
+
             //Vérifie si la transaction est existante ou non
             static bool TransactionExiste(List<Transactions> tr, int id)
             {
@@ -62,6 +65,7 @@ namespace Projet_Formation_I
                 }
                 return false;
             }
+
             /* lecture de Comptes.csv et en ressortir une liste de strings qui sera ensuite convertie 
                en liste de comptes par ParseDataComptes()*/
             static List<Comptes> LectureFichierComptes(string path)
@@ -213,7 +217,7 @@ namespace Projet_Formation_I
             static bool TraitementDepot(Transactions tran, List<Comptes> comptes)
             {
 
-                if (tran.GetMontantTr() > 0) // le montant doit être strictement positif
+                if (tran.GetMontantTr() > 0)
                 {
                     int destinataire = CompteTrouve(comptes, tran.GetDestinataire());
 
