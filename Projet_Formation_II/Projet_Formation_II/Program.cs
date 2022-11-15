@@ -233,7 +233,7 @@ namespace Projet_Formation_II
                     }
                 }
             }
-
+            /*test*/
             Transaction.SetNombreTransactions(Transaction.GetNombreTransactions() + 1);
             Transaction.SetNombreTransactionsKo(Transaction.GetNombreTransactionsKo() + 1);
 
