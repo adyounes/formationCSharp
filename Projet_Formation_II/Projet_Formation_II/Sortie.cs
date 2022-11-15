@@ -71,20 +71,20 @@ namespace Projet_Formation_II
         {
             using (FileStream output = File.OpenWrite(path))
             {
-                using (StreamWriter ecrivain = new StreamWriter(output))
+                using (StreamWriter metrologie = new StreamWriter(output))
                 {
-                    ecrivain.WriteLine("Statistiques :");
-                    ecrivain.WriteLine($"Nombre de comptes : {Compte.GetNombreComptes()}");
-                    ecrivain.WriteLine($"Nombre de transactions : {Transaction.GetNombreTransactions()}");
-                    ecrivain.WriteLine($"Nombre de réussites : {Transaction.GetNombreTransactionsOk()}");
-                    ecrivain.WriteLine($"Nombre d'échecs : {Transaction.GetNombreTransactionsKo()}");
-                    ecrivain.WriteLine($"Montant total des réussites : {Transaction.GetMontantTransactionsOk()} euros");
-                    ecrivain.WriteLine();
-                    ecrivain.WriteLine("Frais de gestion :");
+                    metrologie.WriteLine("Statistiques :");
+                    metrologie.WriteLine($"Nombre de comptes : {Compte.GetNombreComptes()}");
+                    metrologie.WriteLine($"Nombre de transactions : {Transaction.GetNombreTransactions()}");
+                    metrologie.WriteLine($"Nombre de réussites : {Transaction.GetNombreTransactionsOk()}");
+                    metrologie.WriteLine($"Nombre d'échecs : {Transaction.GetNombreTransactionsKo()}");
+                    metrologie.WriteLine($"Montant total des réussites : {Transaction.GetMontantTransactionsOk()} euros");
+                    metrologie.WriteLine();
+                    metrologie.WriteLine("Frais de gestion :");
 
                     foreach (Gestionnaire gest in gestionnaires)
                     {
-                        ecrivain.WriteLine($"{gest.GetIdentifiant()} : {gest.GetFraisGestion()} euros");
+                        metrologie.WriteLine($"{gest.GetIdentifiant()} : {gest.GetFraisGestion()} euros");
                     }
 
                 }

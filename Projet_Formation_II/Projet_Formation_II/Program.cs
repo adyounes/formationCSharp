@@ -51,19 +51,20 @@ namespace Projet_Formation_II
                 if (nb_ope < operations.Count() && nb_tra < transactions.Count())   // il reste des opérations et des transactions
                 {
                     int dateCompare = DateTime.Compare(operations[nb_ope].GetDate(), transactions[nb_tra].GetDate());
-
-                    if (dateCompare <= 0)               // opération avant transaction
-                    {
+                    bool b = operations[nb_ope].GetDate() <= transactions[nb_tra].GetDate();
+                    //if (dateCompare <= 0)                // opération avant transaction
+                    if (b)                // opération avant transaction
+                        {
                         operations[nb_ope].SetStatut(OperationCompte(operations[nb_ope], gestionnaires));
                         nb_ope++;
                     }
-                    else                                // transaction avant opération
+                    else                                 // transaction avant opération
                     {
                         transactions[nb_tra].SetStatut(TraiterTransaction(transactions[nb_tra], gestionnaires));
                         nb_tra++;
                     }
                 }
-                else if (nb_tra == transactions.Count())                // il ne reste que des opérations
+                else if (nb_tra == transactions.Count()) // il ne reste que des opérations
                 {
                     operations[nb_ope].SetStatut(OperationCompte(operations[nb_ope], gestionnaires));
                     nb_ope++;
