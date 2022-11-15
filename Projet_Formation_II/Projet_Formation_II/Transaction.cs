@@ -20,7 +20,7 @@ namespace Projet_Formation_II
 
         private DateTime _date;
 
-        static Transaction()
+        public Transaction()
         {
             _nombre_transactions = 0;
             _nombre_transactions_ok = 0;

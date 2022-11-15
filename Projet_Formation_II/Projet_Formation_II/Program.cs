@@ -32,12 +32,17 @@ namespace Projet_Formation_II
                 Sortie.EcrireSortieTransactions(transactions, sttsTrxnPath);
                 Sortie.EcrireSortieMetrologie(gestionnaires, mtrlPath);
                 #endregion
-                Console.ReadKey();
             }
         }
 
         static void Traitement(List<Gestionnaire> gestionnaires, List<Operation> operations, List<Transaction> transactions)
         {
+            Compte.SetNombreComptes(0);
+            Transaction.SetNombreTransactions(0);
+            Transaction.SetNombreTransactionsOk(0);
+            Transaction.SetNombreTransactionsKo(0);
+            Transaction.SetMontantTransactionsOk(0);
+
             int nb_ope = 0;
             int nb_tra = 0;
 

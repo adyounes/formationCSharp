@@ -20,7 +20,7 @@ namespace Projet_Formation_II
         private DateTime _date_resiliation;
 
 
-        static Compte()
+        public Compte()
         {
             _nombre_comptes = 0;
         }
