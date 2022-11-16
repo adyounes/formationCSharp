@@ -35,7 +35,7 @@ namespace Projet_Formation_II
             _nombre_comptes = n;
         }
 
-        public Compte(int id, DateTime cre, double sld = 0, double maxR = 1000, int ndt = 10)
+        public Compte(int id, DateTime cre, double sld = 0, double maxR = 2000, int ndt = 10)
         {
             _identifiant = id;
             _date_creation = cre;
@@ -106,7 +106,7 @@ namespace Projet_Formation_II
         {
             double total = 0;
 
-            for (int i = _transactions.Count() - 1; i >= 0 && i > _transactions.Count() - 1 - n; i--)
+            for (int i = _transactions.Count() - 1; i >= 0 && i > _transactions.Count() - n; i--)
             {
                 if (_transactions[i].GetExpediteur() == _identifiant)
                 {

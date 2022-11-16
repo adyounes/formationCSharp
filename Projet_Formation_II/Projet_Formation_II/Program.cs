@@ -54,7 +54,7 @@ namespace Projet_Formation_II
                     bool b = operations[nb_ope].GetDate() <= transactions[nb_tra].GetDate();
                     //if (dateCompare <= 0)                // opération avant transaction
                     if (b)                // opération avant transaction
-                        {
+                    {
                         operations[nb_ope].SetStatut(OperationCompte(operations[nb_ope], gestionnaires));
                         nb_ope++;
                     }
@@ -192,15 +192,15 @@ namespace Projet_Formation_II
 
                         return true;
                     }
+
                 }
+
+                Transaction.SetNombreTransactions(Transaction.GetNombreTransactions() + 1);
+                Transaction.SetNombreTransactionsKo(Transaction.GetNombreTransactionsKo() + 1);
             }
-
-            Transaction.SetNombreTransactions(Transaction.GetNombreTransactions() + 1);
-            Transaction.SetNombreTransactionsKo(Transaction.GetNombreTransactionsKo() + 1);
-
             return false;
-        }
 
+        }
         static bool TraiterVirement(Transaction tran, List<Gestionnaire> gestionnaires)
         {
             if (tran.GetMontant() > 0)
@@ -216,35 +216,40 @@ namespace Projet_Formation_II
 
                     if (expediteur != null && destinataire != null && tran.GetMontant() <= expediteur.GetSolde() && expediteur.TransactionIsValid(tran) && tran.DateIsOk(expediteur))
                     {
-                        expediteur.SetSolde(expediteur.GetSolde() - tran.GetMontant());
-
-                        if (gest_exp == gest_des)   // virement entre deux comptes d'un même gestionnaire -> pas de frais de gestion
                         {
-                            destinataire.SetSolde(expediteur.GetSolde() + tran.GetMontant());
-                        }
-                        else                        // virement d'un gestionnaire à l'autre -> frais de gestion
-                        {
-                            double frais_gestion = gestionnaires[gest_exp].FraisGestion(tran.GetMontant());
-                            destinataire.SetSolde(expediteur.GetSolde() + tran.GetMontant() - frais_gestion);
-                            gestionnaires[gest_exp].AddFraisGestion(frais_gestion);
-                        }
+                            expediteur.SetSolde(expediteur.GetSolde() - tran.GetMontant());
 
-                        expediteur.AddTransaction(tran);
-                        destinataire.AddTransaction(tran);
-                        Transaction.SetNombreTransactions(Transaction.GetNombreTransactions() + 1);
-                        Transaction.SetNombreTransactionsOk(Transaction.GetNombreTransactionsOk() + 1);
-                        Transaction.SetMontantTransactionsOk(Transaction.GetMontantTransactionsOk() + tran.GetMontant());
+                            if (gest_exp == gest_des)   // virement entre deux comptes d'un même gestionnaire -> pas de frais de gestion
+                            {
+                                destinataire.SetSolde(expediteur.GetSolde() + tran.GetMontant());
+                            }
+                            else                        // virement d'un gestionnaire à l'autre -> frais de gestion
+                            {
+                                double frais_gestion = gestionnaires[gest_exp].FraisGestion(tran.GetMontant());
+                                destinataire.SetSolde(expediteur.GetSolde() + tran.GetMontant() - frais_gestion);
+                                gestionnaires[gest_exp].AddFraisGestion(frais_gestion);
+                            }
 
-                        return true;
+                            expediteur.AddTransaction(tran);
+                            destinataire.AddTransaction(tran);
+                            Transaction.SetNombreTransactions(Transaction.GetNombreTransactions() + 1);
+                            Transaction.SetNombreTransactionsOk(Transaction.GetNombreTransactionsOk() + 1);
+                            Transaction.SetMontantTransactionsOk(Transaction.GetMontantTransactionsOk() + tran.GetMontant());
+
+                            return true;
+                        }
                     }
                 }
             }
-            /*test*/
-            Transaction.SetNombreTransactions(Transaction.GetNombreTransactions() + 1);
-            Transaction.SetNombreTransactionsKo(Transaction.GetNombreTransactionsKo() + 1);
+                Transaction.SetNombreTransactions(Transaction.GetNombreTransactions() + 1);
+                Transaction.SetNombreTransactionsKo(Transaction.GetNombreTransactionsKo() + 1);
 
-            return false;
+                return false;
+            
+
         }
-
     }
 }
+
+    
+
